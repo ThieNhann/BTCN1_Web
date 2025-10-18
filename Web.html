@@ -11,12 +11,13 @@
             height: 100vh;
             max-width: 1280px;
             margin: 0 auto;
-            grid-template-columns: 1fr 3fr;
+            grid-template-columns: 256px 1fr;
             grid-template-rows: auto 1fr auto;
             grid-template-areas: 
                 "header header"
                 "sidebar main"
                 "footer footer";
+            gap: 10px;
         }
 
         header { grid-area: header; }
@@ -24,19 +25,48 @@
         aside { grid-area: sidebar; }
         footer { grid-area: footer; }
 
-        header, footer {
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
+            grid-column: 1 / -1;
+            height: 66px;
+            border-bottom: 2px solid #00b3ff;
+        }
+
+        footer {
             grid-column: 1 / -1;
             background-color: #c1bcbc;
             text-align: center;
+            height: 33px;
+            border-bottom: 2px solid #00b3ff;
         }
+
+        main {
+            background-color: blanchedalmond;
+        }
+
+        aside {
+            background-color: darkkhaki;
+        }
+
+        .inner-header {
+            width: 100%;
+            height: 75%;
+            background-color: #c1bcbc;
+        }
+
     </style>
 </head>
 <body>
     <div class="page-layout">
-    <header>Header</header>
-    <main>Main</main>
-    <aside>Sidebar</aside>
-    <footer>Footer</footer>
+    <header>
+        <div class="inner-header"></div>
+    </header>
+    <main></main>
+    <aside></aside>
+    <footer></footer>
     </div>
 </body>
 </html>
