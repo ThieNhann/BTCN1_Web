@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function()  {
         });
 
         header.addEventListener('dragstart', () => {
-            console.log("dragged")
             draggedItem = item;
             setTimeout(() => {
                 item.classList.add('dragging');
