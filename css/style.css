@@ -130,18 +130,41 @@ aside {
 .news-header {
     display: flex;
     justify-content: space-between;
-    color: white;
-    background-color: orange;
+    color: rgb(149, 146, 173);
+    background-color: rgb(235, 198, 129);
+    padding: 3px;
+    cursor: pointer;
+    user-select: none;
+    align-items: center;
+}
+
+.news-header:hover {
+    background-color: rgb(255, 187, 61);
 }
 
 .news-header div {
     padding: 5px;
-    font-size: 20px;
+    font-size: 23px;
 }
 
 .news-content {
     background-color: white;
+    overflow: hidden;
+    max-height: 0;
+}
+
+.news-item.active .news-header {
+    color: white;
+    background-color: orange;
+}
+
+.news-item.active .news-content{
+    max-height: none;
+}
+
+.news-content p {
+    margin: 0;
     color: rgb(4, 77, 233);
-    padding: 5px;
     font-size: 15px;
+    padding: 7px;
 }
