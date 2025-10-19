@@ -142,6 +142,10 @@ aside {
     background-color: rgb(255, 187, 61);
 }
 
+.news-item.active .news-header:hover {
+    background-color: rgb(250, 208, 129);
+}
+
 .news-header div {
     padding: 5px;
     font-size: 23px;
@@ -155,7 +159,7 @@ aside {
 
 .news-item.active .news-header {
     color: white;
-    background-color: orange;
+    background-color: rgb(255, 187, 61);
 }
 
 .news-item.active .news-content{
