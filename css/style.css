@@ -83,7 +83,6 @@ aside {
     margin: -12px auto;
     border-radius: 4px;
     box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.504);
-    color: #0963b1;
 }
 
 .main-nav ul {
@@ -100,7 +99,18 @@ aside {
 
 .main-nav ul li a {
     text-decoration: none;
+    color:rgb(26, 104, 149);
 }
+
+.main-nav ul li a:hover,
+.main-nav ul li a:focus ,
+.main-nav ul li a:active,
+.main-nav ul li a.active {
+    text-decoration: none;
+    color: rgb(242, 148, 33);
+}
+
+
 
 .footer-nav {
     list-style: none;
@@ -116,6 +126,14 @@ aside {
     color: rgb(247, 148, 0);
     padding: 0 10px;
     border-right: 1px solid rgb(247, 148, 0);
+}
+
+.footer-nav ul li a:hover,
+.footer-nav ul li a:focus,
+.footer-nav ul li a:active,
+.footer-nav ul li a.active {
+    color:antiquewhite;
+    background-color: rgb(247, 148, 0);
 }
 
 .footer-nav ul li:last-child a {

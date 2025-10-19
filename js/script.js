@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function()  {
     const sidebar = document.querySelector('aside');
     const newsItems = document.querySelectorAll('.news-item');
+    let draggedItem = null;
 
     newsItems.forEach(item => {
         const header = item.querySelector('.news-header');
@@ -30,8 +31,6 @@ document.addEventListener('DOMContentLoaded', function()  {
         })
     })
 
-    let draggedItem = null;
-
     sidebar.addEventListener('dragover', e => {
         e.preventDefault();
         const afterElement = getDragAfterElement(sidebar, e.clientY);
@@ -58,4 +57,24 @@ document.addEventListener('DOMContentLoaded', function()  {
             }
         }, {offset: Number.NEGATIVE_INFINITY }).element;
     }
+
+    const allLinks = document.querySelectorAll('a');
+
+    allLinks.forEach(clickedLink => {
+        clickedLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            const activateIndex = this.dataset.index;
+
+            allLinks.forEach(link => {
+                console.log('removed active')
+                link.classList.remove('active');
+            })
+
+            const linksToActivate = document.querySelectorAll(`a[data-index="${activateIndex}"]`);
+            linksToActivate.forEach(link => {
+                console.log('added active')
+                link.classList.add('active');
+            })
+        })
+    })  
 })
