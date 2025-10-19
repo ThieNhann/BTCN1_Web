@@ -19,4 +19,19 @@ document.addEventListener('DOMContentLoaded', function()  {
             }
         })  
     })
+
+    let draggedItem = null;
+
+    newsItems.forEach(item => {
+        item.addEventListener('dragstart', () => {
+            draggedItem = item;
+            setTimeout(() => {
+                item.classList.add('dragging');
+            });
+        });
+
+        item.addEventListener('dragend', () => {
+            item.classList.remove('dragging')
+        })
+    });
 })
