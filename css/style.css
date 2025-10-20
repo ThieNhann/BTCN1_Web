@@ -286,9 +286,11 @@ aside {
 
 .sampleStyle span {
     font-size: 20px;
+    color: #ff0000;
+    background-color: #ffff00;
 }
 
-.sampleStyle .moreSettingIcon {
+.sampleStyle .moreSettingButton {
     background-color: #2066e8;
     border: none;
     cursor: pointer;
@@ -296,7 +298,19 @@ aside {
     border-radius: 50%;
 }
 
-.sampleStyle .moreSettingIcon img {
+.moreSettingButton:hover {
+    background-color: rgb(34, 82, 149);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.moreSettingButton:active {
+    background-color: rgb(27, 64, 116);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    transform: translateY(0);
+}
+
+.sampleStyle .moreSettingButton img {
     width: 24px;
     height: 24px;
 }
