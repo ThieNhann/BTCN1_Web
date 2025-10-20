@@ -384,6 +384,7 @@ button:active {
     flex-direction: column;
     width: 180px;
     height: 150px;
+    
 }
 
 .animal-item.dragging {
