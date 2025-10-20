@@ -378,12 +378,25 @@ button:active {
 .drag-field .drag-over {
     border: 1px solid black;
 }
+
 .animal-item {
     display: flex;
     flex-direction: column;
     width: 180px;
     height: 150px;
+}
 
+.animal-item.dragging {
+    opacity: 0.4;
+}
+
+.placeholder {
+    background-color: #f0f0f0;
+    border: 1px solid #999;
+    width: 180px;
+    height: 100px;
+    box-sizing: border-box;
+    border-radius: 10px;
 }
 
 .animal-icon {

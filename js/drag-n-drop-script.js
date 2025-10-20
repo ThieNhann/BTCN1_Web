@@ -1,113 +1,70 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let selectedAnimal = document.getElementById('animalSelect');
-    const addNewAnimalButton = document.getElementById('addNewAnimal');
     const field = document.querySelector('.drag-field');
-    
-    addNewAnimalButton.addEventListener('click', () => {
-        selectedAnimal = document.getElementById('animalSelect');
-        let animalName = selectedAnimal.value;
-        let animalIcon = selectedAnimal.options[selectedAnimal.selectedIndex].text;
-
-        const animalItem = document.createElement('div');
-        animalItem.classList.add('animal-item');
-        animalItem.setAttribute('draggable', true);
-        animalItem.innerHTML = `<div class="animal-icon"></div>
-                                <div class="animal-name"></div>`;
-        
-        const iconElement = animalItem.querySelector('.animal-icon');
-        const nameElement = animalItem.querySelector('.animal-name');
-
-        iconElement.textContent = animalIcon;
-        nameElement.textContent = animalName;
-
-        animalItem.addEventListener('dragstart', handleDragStart);
-        animalItem.addEventListener('dragover', handleDragOver);
-        animalItem.addEventListener('dragleave', handleDragLeave);
-        animalItem.addEventListener('drop', handleDrop);
-        animalItem.addEventListener('dragend', handleDragEnd);
-
-        field.appendChild(animalItem);
-    })
-
-
-    const animalItems = document.querySelectorAll('.animal-item');
     let draggedItem = null;
-
-    animalItems.forEach(item => {
-        item.setAttribute('draggable', true);
-    });
-
-    animalItems.forEach(item => {
-        item.addEventListener('dragstart', handleDragStart);
-        item.addEventListener('dragover', handleDragOver);
-        item.addEventListener('dragleave', handleDragLeave);
-        item.addEventListener('drop', handleDrop);
-        item.addEventListener('dragend', handleDragEnd);
-    });
 
     function handleDragStart(e) {
         draggedItem = this;
-        setTimeout(() => {
-            this.classList.add('dragging');
-        }, 0);
+        this.classList.add('dragging');
         e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/html', this.innerHTML); 
+        e.dataTransfer.setData('text/plain', '');
+    }
+
+    function handleDragEnd(e) {
+        if (draggedItem) {
+            draggedItem.classList.remove('dragging');
+            draggedItem = null;
+        }
     }
 
     function handleDragOver(e) {
         e.preventDefault();
-        if (this !== draggedItem) {
-            const afterElement = getDragAfterElement(field, e.clientY);
+        const target = e.target.closest('.animal-item');
+        if (!target || target === draggedItem) return;
 
-            document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
-            
-            if (afterElement == null) {
-                field.appendChild(this).classList.add('drag-over'); 
-            } else {
-                field.insertBefore(this, afterElement.element);
-                this.classList.add('drag-over');
-            }
+        // Lấy toàn bộ danh sách item hiện tại
+        const items = [...field.querySelectorAll('.animal-item')];
+        const draggedIndex = items.indexOf(draggedItem);
+        const targetIndex = items.indexOf(target);
+
+        // Hoán đổi vị trí dựa vào hướng chuột
+        const rect = target.getBoundingClientRect();
+        const beforeHalf = e.clientY < rect.top + rect.height / 2;
+
+        if (draggedIndex < targetIndex && beforeHalf) {
+            field.insertBefore(draggedItem, target);
+        } else if (draggedIndex > targetIndex && !beforeHalf) {
+            field.insertBefore(draggedItem, target.nextSibling);
+        } else if (draggedIndex < targetIndex) {
+            field.insertBefore(draggedItem, target.nextSibling);
+        } else {
+            field.insertBefore(draggedItem, target);
         }
     }
 
-    function handleDragLeave(e) {
-        this.classList.remove('drag-over');
+    function addDragEventsToItem(item) {
+        item.draggable = true;
+        item.addEventListener('dragstart', handleDragStart);
+        item.addEventListener('dragend', handleDragEnd);
     }
 
-    function handleDrop(e) {
-        e.stopPropagation();
+    field.querySelectorAll('.animal-item').forEach(addDragEventsToItem);
+    field.addEventListener('dragover', handleDragOver);
 
-        if (draggedItem !== this) {
-            const afterElement = getDragAfterElement(field, e.clientY);
-            
-            if (afterElement == null) {
-                field.appendChild(draggedItem);
-            } else {
-                field.insertBefore(draggedItem, afterElement.element);
-            }
-        }
-        
-        document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
-        return false;
-    }
+    // Thêm nút "Add new" như cũ
+    const addNewAnimalButton = document.getElementById('addNewAnimal');
+    addNewAnimalButton.addEventListener('click', () => {
+        const selectedAnimal = document.getElementById('animalSelect');
+        const animalName = selectedAnimal.value;
+        const animalIcon = selectedAnimal.options[selectedAnimal.selectedIndex].text;
 
-    function handleDragEnd(e) {
-        this.classList.remove('dragging');
-        draggedItem = null;
-    }
+        const animalItem = document.createElement('div');
+        animalItem.classList.add('animal-item');
+        animalItem.innerHTML = `
+            <div class="animal-icon">${animalIcon}</div>
+            <div class="animal-name">${animalName}</div>
+        `;
 
-    function getDragAfterElement(container, y) {
-        const draggableElements = [...container.querySelectorAll('.animal-item:not(.dragging)')];
-
-        return draggableElements.reduce((closest, child) => {
-            const rect = child.getBoundingClientRect();
-            const offset = y - rect.top - rect.height / 2;
-
-            if (offset < 0 && offset > closest.offset) {
-                return { offset: offset, element: child };
-            } else {
-                return closest;
-            }
-        }, {offset: Number.NEGATIVE_INFINITY }).element;
-    }
-})
+        field.appendChild(animalItem);
+        addDragEventsToItem(animalItem);
+    });
+});
