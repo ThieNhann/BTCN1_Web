@@ -266,12 +266,12 @@ aside {
 }
 
 .tools button:hover {
-    background-color: rgb(45, 107, 194);
+    background-color: rgb(50, 118, 213);
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 .tools button:active {
-    background-color: rgb(35, 85, 155);
+    background-color: rgb(44, 110, 202);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
     transform: translateY(0);
 }

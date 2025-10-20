@@ -96,5 +96,5 @@ document.addEventListener('DOMContentLoaded', () => {
     resetButton.addEventListener('click', () => {
         paragraph.innerHTML = originalTextContent;
     })
-    
+
 });
