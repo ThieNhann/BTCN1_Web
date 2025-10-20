@@ -361,3 +361,41 @@ button:active {
     cursor: pointer;
 }
 
+.drag-field {
+    flex-grow: 1;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding: 15px;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.animal-item {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 150px;
+
+}
+
+.animal-icon {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background: radial-gradient(circle, rgb(108, 173, 237) 30%, rgb(9, 97, 186) 100%);
+    border: 1px solid black;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+.animal-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0;
+}
