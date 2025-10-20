@@ -371,12 +371,14 @@ button:active {
     padding: 15px;
     gap: 5px;
     flex-wrap: wrap;
+    overflow-y: auto;
+    overflow-x: hidden
 }
 
 .animal-item {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 180px;
     height: 150px;
 
 }
