@@ -50,33 +50,21 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             this.classList.add('dragging');
         }, 0);
-        e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/html', this.innerHTML); 
     }
 
     function handleDragOver(e) {
         e.preventDefault();
-        if (this !== draggedItem) {
-            const afterElement = getDragAfterElement(field, e.clientY);
-
-            document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
-            
-            if (afterElement == null) {
-                field.appendChild(this).classList.add('drag-over'); 
-            } else {
-                field.insertBefore(this, afterElement.element);
-                this.classList.add('drag-over');
-            }
-        }
+        field.classList.add('drag-over-active');
     }
 
     function handleDragLeave(e) {
-        this.classList.remove('drag-over');
+        this.classList.remove('drag-over-active');
     }
 
     function handleDrop(e) {
+        e.preventDefault();
         e.stopPropagation();
-
+        
         if (draggedItem !== this) {
             const afterElement = getDragAfterElement(field, e.clientY);
             
