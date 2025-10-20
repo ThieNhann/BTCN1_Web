@@ -262,7 +262,8 @@ main {
     padding: 6px 0;
 }
 
-.tools button {
+.tools button,
+.animal-select-container button {
     color: white;
     background-color: #2e73d3;
     border: 0px;
@@ -271,14 +272,15 @@ main {
     width: 100px;
     font-size: 14px;
     cursor: pointer;
+    white-space: nowrap;
 }
 
-.tools button:hover {
+button:hover {
     background-color: rgb(50, 118, 213);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
-.tools button:active {
+button:active {
     background-color: rgb(44, 110, 202);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
     transform: translateY(0);
@@ -342,9 +344,20 @@ main {
     flex-direction: column;
 }
 
+.animal-select-container {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
 .animal-select {
     width: 100%;
-    padding: 10px 20px;
+    padding: 10px;
+    padding-right: 0px;
     border: 2px solid rgb(0, 132, 255);
+    border-radius: 5px;
     cursor: pointer;
 }
+
