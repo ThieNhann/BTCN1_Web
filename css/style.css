@@ -48,6 +48,12 @@ aside {
     background-color: rgb(209, 209, 203);
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .inner-header {
     width: 100%;
     height: 75%;
@@ -204,7 +210,8 @@ aside {
     padding: 7px;
 }
 
-.process-text {
+.process-text,
+.drag-n-drop {
     height: 400px;
     border: 1px solid black;
     border-radius: 6px;
@@ -218,6 +225,7 @@ aside {
     flex-shrink: 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 10px 20px;
 }
 
@@ -332,4 +340,11 @@ aside {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     z-index: 10;
     flex-direction: column;
+}
+
+.animal-select {
+    width: 100%;
+    padding: 10px 20px;
+    border: 2px solid rgb(0, 132, 255);
+    cursor: pointer;
 }
