@@ -72,8 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function highlight(string) {
-        const regex = new RegExp(string, 'g');
-        
+        let regex;
+
+        try {
+            regex = new RegExp(string, 'g');
+        } catch(e) {
+            alert("Invalid pattern!");
+            return;
+        }
+
         const color = sample.style.color || 'initial';
         const backgroundColor = sample.style.backgroundColor || 'transparent';
         const textDecoration = sample.style.textDecoration || 'none';
@@ -99,9 +106,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     deleteButton.addEventListener('click', () => {
         const textToDelete = document.getElementById('sampleTextField').value;
-        console.log(textToDelete);
+        if (!textToDelete) return;
+
+        try {
+            regex = new RegExp(textToDelete, 'g');
+        } catch(e) {
+            alert("Invalid pattern!");
+            return;
+        }
+
         const text = paragraph.textContent;
-        let newText = text.replaceAll(textToDelete, '');
+        let newText = text.replace(regex, '');
         paragraph.textContent = newText;
     });
 });
