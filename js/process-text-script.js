@@ -24,10 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     textColorPicker.addEventListener('input', (event) => {
         sample.style.color = event.target.value;
+        const textToHighlight = document.getElementById('sampleTextField').value;
+        highlight(textToHighlight);
     })
 
     backgroundColorPicker.addEventListener('input', (event) => {
         sample.style.backgroundColor = event.target.value;
+        const textToHighlight = document.getElementById('sampleTextField').value;
+        highlight(textToHighlight);
     })
 
     boldCheckbox.addEventListener('change', (event) => {
@@ -37,6 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
         else {
             sample.style.fontWeight = 'normal';
         }
+        const textToHighlight = document.getElementById('sampleTextField').value;
+        highlight(textToHighlight);
     })
 
     italicCheckbox.addEventListener('change', (event) => {
@@ -46,6 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
         else {
             sample.style.fontStyle = 'normal';
         }
+        const textToHighlight = document.getElementById('sampleTextField').value;
+        highlight(textToHighlight);
     })
 
     underlineCheckbox.addEventListener('change', (event) => {
@@ -55,6 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
         else {
             sample.style.textDecoration = 'none';
         }
+        const textToHighlight = document.getElementById('sampleTextField').value;
+        highlight(textToHighlight);
     })
 
     settingButton.addEventListener('click', () => {
