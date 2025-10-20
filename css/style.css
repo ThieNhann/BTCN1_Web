@@ -417,3 +417,36 @@ button:active {
     align-items: center;
     padding: 5px 0;
 }
+
+@media (max-width: 576px) {
+    .page-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-areas: 
+            "header"
+            "sidebar"
+            "main"
+            "footer";
+        gap: 8px;
+    }
+
+    .header-text {
+        font-size: 20px;
+        letter-spacing: 4px;
+    }
+
+    .main-nav {
+        width: 95%;
+        margin-top: -10px;
+    }
+
+    .main-nav ul {
+        padding: 5px 2px;
+        justify-content: space-around;
+    }
+
+    .main-nav ul li a {
+        font-size: 12px;
+        padding: 0 5px;
+    }
+}
