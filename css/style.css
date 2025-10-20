@@ -151,9 +151,26 @@ aside {
     color: rgb(149, 146, 173);
     background-color: rgb(235, 198, 129);
     padding: 3px;
-    cursor: pointer;
     user-select: none;
     align-items: center;
+}
+
+.drop-down-icon {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.drag-icon {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
 }
 
 .news-header:hover {

@@ -5,28 +5,29 @@ document.addEventListener('DOMContentLoaded', function()  {
 
     newsItems.forEach(item => {
         const header = item.querySelector('.news-header');
-        const icon = item.querySelector('.drop-down-icon');
+        const dropDownIcon = item.querySelector('.drop-down-icon');
+        const dragIcon = item.querySelector('.drag-icon');
         let isActive = item.classList.contains('active');
-        header.addEventListener('click', () => {
+        dropDownIcon.addEventListener('click', () => {
             item.classList.toggle('active');
             isActive = item.classList.contains('active');
             if (isActive) { 
-                icon.textContent = '|';
+                dropDownIcon.textContent = '|';
             }
             else {
-                icon.textContent = '▶';
-                icon.style.fontSize = '20px';
+                dropDownIcon.textContent = '▶';
+                dropDownIcon.style.fontSize = '20px';
             }
         });
 
-        header.addEventListener('dragstart', () => {
+        dragIcon.addEventListener('dragstart', () => {
             draggedItem = item;
             setTimeout(() => {
                 item.classList.add('dragging');
             }, 0);
         });
 
-        item.addEventListener('dragend', () => {
+        dragIcon.addEventListener('dragend', () => {
             item.classList.remove('dragging')
         })
     })
@@ -66,13 +67,11 @@ document.addEventListener('DOMContentLoaded', function()  {
             const activateIndex = this.dataset.index;
 
             allLinks.forEach(link => {
-                console.log('removed active')
                 link.classList.remove('active');
             })
 
             const linksToActivate = document.querySelectorAll(`a[data-index="${activateIndex}"]`);
             linksToActivate.forEach(link => {
-                console.log('added active')
                 link.classList.add('active');
             })
         })
