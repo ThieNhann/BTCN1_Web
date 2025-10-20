@@ -2,40 +2,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const field = document.querySelector('.drag-field');
     let draggedItem = null;
 
+    const placeholder = document.createElement('div');
+    placeholder.classList.add('placeholder');
+
     function handleDragStart(e) {
         draggedItem = this;
-        this.classList.add('dragging');
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('text/plain', '');
+
+        setTimeout(() => {
+            this.classList.add('dragging');
+        }, 0);
     }
 
     function handleDragEnd(e) {
-        if (draggedItem) {
-            draggedItem.classList.remove('dragging');
-            draggedItem = null;
+        if (!draggedItem) return;
+
+        if (placeholder.parentNode) {
+            placeholder.parentNode.replaceChild(draggedItem, placeholder);
         }
+
+        draggedItem.classList.remove('dragging');
+        draggedItem = null;
     }
 
     function handleDragOver(e) {
         e.preventDefault();
+        if (!draggedItem) return;
+
         const target = e.target.closest('.animal-item');
-        if (!target || target === draggedItem) return;
 
-        const items = [...field.querySelectorAll('.animal-item')];
-        const draggedIndex = items.indexOf(draggedItem);
-        const targetIndex = items.indexOf(target);
+        if (target && target !== draggedItem) {
+            const rect = target.getBoundingClientRect();
+            const isAfter = e.clientX > rect.left + rect.width / 2;
 
-        const rect = target.getBoundingClientRect();
-        const beforeHalf = e.clientY < rect.top + rect.height / 2;
-
-        if (draggedIndex < targetIndex && beforeHalf) {
-            field.insertBefore(draggedItem, target);
-        } else if (draggedIndex > targetIndex && !beforeHalf) {
-            field.insertBefore(draggedItem, target.nextSibling);
-        } else if (draggedIndex < targetIndex) {
-            field.insertBefore(draggedItem, target.nextSibling);
-        } else {
-            field.insertBefore(draggedItem, target);
+            if (isAfter) {
+                field.insertBefore(placeholder, target.nextSibling);
+            } else {
+                field.insertBefore(placeholder, target);
+            }
         }
     }
 
@@ -45,8 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('dragend', handleDragEnd);
     }
 
-    field.querySelectorAll('.animal-item').forEach(addDragEventsToItem);
     field.addEventListener('dragover', handleDragOver);
+
+    field.querySelectorAll('.animal-item').forEach(addDragEventsToItem);
 
     const addNewAnimalButton = document.getElementById('addNewAnimal');
     addNewAnimalButton.addEventListener('click', () => {
@@ -56,10 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const animalItem = document.createElement('div');
         animalItem.classList.add('animal-item');
-        animalItem.innerHTML = `
-            <div class="animal-icon">${animalIcon}</div>
-            <div class="animal-name">${animalName}</div>
-        `;
+        animalItem.innerHTML = `<div class="animal-icon">${animalIcon}</div>
+                                <div class="animal-name">${animalName}</div>`;
 
         field.appendChild(animalItem);
         addDragEventsToItem(animalItem);
