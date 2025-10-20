@@ -70,4 +70,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const textToHighlight = document.getElementById('sampleTextField').value;
         highlight(textToHighlight);
     });
+
+    function highlight(string) {
+        const regex = new RegExp(string, 'g');
+        
+        const color = sample.style.color || 'initial';
+        const backgroundColor = sample.style.backgroundColor || 'transparent';
+        const textDecoration = sample.style.textDecoration || 'none';
+        const fontWeight = sample.style.fontWeight || 'normal';
+        const fontStyle = sample.style.fontStyle || 'normal';
+        
+        const styleAttribute = `style="color: ${color}; 
+                                background-color: ${backgroundColor}; 
+                                text-decoration: ${textDecoration}; 
+                                font-weight: ${fontWeight}; 
+                                font-style: ${fontStyle};"`;
+
+        const replaceString = `<span data-text="${string}" ${styleAttribute}>$&</span>`;
+        
+        const baseContent = paragraph.textContent;
+        const newText = baseContent.replace(regex, replaceString);
+        paragraph.innerHTML = newText;
+    }
+
 });
