@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     deleteButton.addEventListener('click', () => {
         const textToDelete = document.getElementById('sampleTextField').value;
         console.log(textToDelete);
-        const text = originalTextContent;
+        const text = paragraph.textContent;
         let newText = text.replaceAll(textToDelete, '');
         paragraph.textContent = newText;
     });
