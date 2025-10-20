@@ -375,6 +375,9 @@ button:active {
     overflow-x: hidden
 }
 
+.drag-field .drag-over {
+    border: 1px solid black;
+}
 .animal-item {
     display: flex;
     flex-direction: column;
