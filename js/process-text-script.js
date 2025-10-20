@@ -97,4 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
         paragraph.innerHTML = originalTextContent;
     })
 
+    deleteButton.addEventListener('click', () => {
+        const textToDelete = document.getElementById('sampleTextField').value;
+        console.log(textToDelete);
+        const text = originalTextContent;
+        let newText = text.replaceAll(textToDelete, '');
+        paragraph.textContent = newText;
+    });
 });
