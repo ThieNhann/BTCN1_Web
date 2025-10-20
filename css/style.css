@@ -262,6 +262,7 @@ aside {
     padding: 8px 13px;
     width: 100px;
     font-size: 14px;
+    cursor: pointer;
 }
 
 .tools button:hover {
@@ -273,4 +274,49 @@ aside {
     background-color: rgb(35, 85, 155);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
     transform: translateY(0);
+}
+
+.sampleStyle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.sampleStyle span {
+    font-size: 20px;
+}
+
+.sampleStyle .moreSettingIcon {
+    background-color: #2066e8;
+    border: none;
+    cursor: pointer;
+    padding: 3px 5px;
+    border-radius: 50%;
+}
+
+.sampleStyle .moreSettingIcon img {
+    width: 24px;
+    height: 24px;
+}
+
+.settingsContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.popup-box {
+    position: absolute;
+    top: 130%;
+    left: -200%;
+    background-color: #f0f8ff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 15px;
+    min-width: 150px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
 }

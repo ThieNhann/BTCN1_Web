@@ -32,7 +32,24 @@
                     <button type="button" id="deleteButton" >Delete</button>
                     <button type="button" id="resetButton" >Reset</button>
                 </div>
-                <div class="sample">sample</div>
+                <div class="sampleStyle">
+                    <span>SampleText</span>
+                    <input type="color" id="textColor" name="TextColor" value="#ff0000">
+                    <div class="settingsContainer">
+                        <button type="button" class="moreSettingIcon" >
+                            <img src="images/settings.png">
+                        </button>
+
+                        <div id="settingsPopup" class="popup-box">
+                            <label><input type="checkbox">Bold</label>
+                            <label><input type="checkbox">Italic</label>
+                            <label><input type="checkbox">Underline</label>
+                            <label><input type="color" id="backgroundColor" value="#ffff00"> Background</label>
+                        </div>
+
+                    </div>
+                </div>
+                
             </div>
             <div class="text-field">
                 <p>
@@ -119,6 +136,6 @@
     </div>
 
     <script src="js/script.js"></script>
-
+    <script src="js/process-text-script.js"></script>
 </body>
 </html>
