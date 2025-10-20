@@ -213,18 +213,18 @@ aside {
 }
 
 .tool-bar {
-    background-color: #8cceeb;
+    background-image: linear-gradient(to bottom, #aedae6, #2066e8);
     border-bottom: 1px solid black;
     flex-shrink: 0;
     display: flex;
     justify-content: space-between;
-    padding: 15px;
+    padding: 10px 20px;
 }
 
 .text-field {
     flex-grow: 1;
     box-sizing: border-box;
-    padding: 0 10px;
+    padding: 0 20px;
     overflow-y: auto;
     overflow-x: hidden;
     word-wrap: break-word;
@@ -234,4 +234,43 @@ aside {
     font-size: 25px;
     width: 100%;
     word-break: break-word;
+}
+
+.tool-bar .name {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.tool-bar .tools {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.tool-bar .tools input {
+    padding: 6px 0;
+}
+
+.tools button {
+    color: white;
+    background-color: #2e73d3;
+    border: 0px;
+    border-radius: 20px;
+    padding: 8px 13px;
+    width: 100px;
+    font-size: 14px;
+}
+
+.tools button:hover {
+    background-color: rgb(45, 107, 194);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.tools button:active {
+    background-color: rgb(35, 85, 155);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    transform: translateY(0);
 }
