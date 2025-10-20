@@ -34,6 +34,11 @@ document.addEventListener('DOMContentLoaded', function()  {
 
     sidebar.addEventListener('dragover', e => {
         e.preventDefault();
+    })
+
+    sidebar.addEventListener('drop', e => {
+        e.preventDefault();
+        if (draggedItem == null) return;
         const afterElement = getDragAfterElement(sidebar, e.clientY);
 
         if (afterElement == null) {
