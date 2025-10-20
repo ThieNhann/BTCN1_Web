@@ -387,12 +387,12 @@ button:active {
 }
 
 .animal-item.dragging {
-    opacity: 0.4;
+    display: none;
 }
 
 .placeholder {
-    background-color: #f0f0f0;
-    border: 1px solid #999;
+    background-color: #f0f0f000;
+    border: 1px solid #000000;
     width: 180px;
     height: 100px;
     box-sizing: border-box;

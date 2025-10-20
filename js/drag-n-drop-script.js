@@ -21,12 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = e.target.closest('.animal-item');
         if (!target || target === draggedItem) return;
 
-        // Lấy toàn bộ danh sách item hiện tại
         const items = [...field.querySelectorAll('.animal-item')];
         const draggedIndex = items.indexOf(draggedItem);
         const targetIndex = items.indexOf(target);
 
-        // Hoán đổi vị trí dựa vào hướng chuột
         const rect = target.getBoundingClientRect();
         const beforeHalf = e.clientY < rect.top + rect.height / 2;
 
@@ -50,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     field.querySelectorAll('.animal-item').forEach(addDragEventsToItem);
     field.addEventListener('dragover', handleDragOver);
 
-    // Thêm nút "Add new" như cũ
     const addNewAnimalButton = document.getElementById('addNewAnimal');
     addNewAnimalButton.addEventListener('click', () => {
         const selectedAnimal = document.getElementById('animalSelect');
