@@ -20,8 +20,16 @@ document.addEventListener('DOMContentLoaded', function()  {
             }
         });
 
-        dragIcon.addEventListener('dragstart', () => {
+        dragIcon.addEventListener('dragstart', (e) => {
             draggedItem = item;
+            e.dataTransfer.effectAllowed = 'move';
+
+            const rect = item.getBoundingClientRect();
+            const offsetX = e.clientX - rect.left;
+            const offsetY = e.clientY - rect.top;
+
+            e.dataTransfer.setDragImage(item, offsetX, offsetY);
+
             setTimeout(() => {
                 item.classList.add('dragging');
             }, 0);
@@ -34,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function()  {
 
     sidebar.addEventListener('dragover', e => {
         e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
     })
 
     sidebar.addEventListener('drop', e => {

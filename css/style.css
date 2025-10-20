@@ -172,7 +172,7 @@ main {
     height: 20px;
     justify-content: center;
     align-items: center;
-    cursor: grab;
+    cursor: ns-resize;
 }
 
 .news-header:hover {
