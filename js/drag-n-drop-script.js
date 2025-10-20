@@ -29,6 +29,73 @@ document.addEventListener('DOMContentLoaded', () => {
         field.appendChild(animalItem);
     })
 
+
+    const animalItems = document.querySelectorAll('.animal-item');
+    let draggedItem = null;
+
+    animalItems.forEach(item => {
+        item.setAttribute('draggable', true);
+    });
+
+    animalItems.forEach(item => {
+        item.addEventListener('dragstart', handleDragStart);
+        item.addEventListener('dragover', handleDragOver);
+        item.addEventListener('dragleave', handleDragLeave);
+        item.addEventListener('drop', handleDrop);
+        item.addEventListener('dragend', handleDragEnd);
+    });
+
+    function handleDragStart(e) {
+        draggedItem = this;
+        setTimeout(() => {
+            this.classList.add('dragging');
+        }, 0);
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/html', this.innerHTML); 
+    }
+
+    function handleDragOver(e) {
+        e.preventDefault();
+        if (this !== draggedItem) {
+            const afterElement = getDragAfterElement(field, e.clientY);
+
+            document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+            
+            if (afterElement == null) {
+                field.appendChild(this).classList.add('drag-over'); 
+            } else {
+                field.insertBefore(this, afterElement.element);
+                this.classList.add('drag-over');
+            }
+        }
+    }
+
+    function handleDragLeave(e) {
+        this.classList.remove('drag-over');
+    }
+
+    function handleDrop(e) {
+        e.stopPropagation();
+
+        if (draggedItem !== this) {
+            const afterElement = getDragAfterElement(field, e.clientY);
+            
+            if (afterElement == null) {
+                field.appendChild(draggedItem);
+            } else {
+                field.insertBefore(draggedItem, afterElement.element);
+            }
+        }
+        
+        document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+        return false;
+    }
+
+    function handleDragEnd(e) {
+        this.classList.remove('dragging');
+        draggedItem = null;
+    }
+
     function getDragAfterElement(container, y) {
         const draggableElements = [...container.querySelectorAll('.animal-item:not(.dragging)')];
 
